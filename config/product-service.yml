@@ -1,15 +1,4 @@
-management:
- endpoints:
-  web:
-   exposure:
-    include: health,info,metrics,prometheus
-
-server:
-  port: 8082
-  
 spring:
-  application:
-     name: productservice
   datasource:
     url: jdbc:h2:mem:supershopee
     username: sa
