@@ -1,7 +1,13 @@
 spring:
+  cloud:
+    vault:
+      host: localhost
+      port: 8200
+      scheme: http
+      token: hvs.aSiDoG0se60VhjptKG8gf0pl
   datasource:
-    username: root
-    password: ravi@mysql70
+    username: ${mysqldbusername}
+    password: ${mysqldbpassword}
     url: jdbc:mysql://localhost:3307/supershopee?useSSL=false&allowPublicKeyRetrieval=true
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
