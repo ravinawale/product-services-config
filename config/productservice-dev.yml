@@ -1,8 +1,8 @@
 spring:
   datasource:
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: ravi@mysql70
+    url: jdbc:mysql://localhost:3307/supershopee?useSSL=false&allowPublicKeyRetrieval=true
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
