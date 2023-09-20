@@ -1,11 +1,4 @@
 spring:
-  cloud:
-    vault:
-      enable : true
-      host: localhost
-      port: 8200
-      scheme: http
-      token: hvs.CoNx9vQHapz1pvRMaTcRjYYn
   datasource:
     username: ${mysqldbusername}
     password: ${mysqldbpassword}
