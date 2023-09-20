@@ -4,7 +4,7 @@ spring:
       host: localhost
       port: 8200
       scheme: http
-      token: hvs.lUNtnRzlSkPMfxpvlAbvyntD
+      token: hvs.CoNx9vQHapz1pvRMaTcRjYYn
   datasource:
     username: ${mysqldbusername}
     password: ${mysqldbpassword}
