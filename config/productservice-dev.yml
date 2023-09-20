@@ -1,6 +1,7 @@
 spring:
   cloud:
     vault:
+      enable : true
       host: localhost
       port: 8200
       scheme: http
