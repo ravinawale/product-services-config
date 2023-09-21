@@ -1,26 +1,26 @@
 spring:
-    cloud:
-       vault:
-          kv:
-            enabled: true
-          enabled : true 
-          authentication: TOKEN
-          uri: http://localhost:8200
-          host: localhost
-          port: 8200
-          scheme: http
-          token: 00000000-0000-0000-0000-000000000000
-    config:
-        profile: dev
-  datasource:
-    username: ${mysqldbusername}
-    password: ${mysqldbpassword}
-    url: jdbc:mysql://localhost:3307/supershopee?useSSL=false&allowPublicKeyRetrieval=true
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
-    hibernate:
-        ddl-auto : update
-    properties :
-        hibernate:
-            format-sql : true
+   cloud:
+      vault:
+         kv:
+           enabled: true
+         enabled : true 
+         authentication: TOKEN
+         uri: http://localhost:8200
+         host: localhost
+         port: 8200
+         scheme: http
+         token: 00000000-0000-0000-0000-000000000000
+   config:
+      profile: dev
+   datasource:
+      username: ${mysqldbusername}
+      password: ${mysqldbpassword}
+      url: jdbc:mysql://localhost:3307/supershopee?useSSL=false&allowPublicKeyRetrieval=true
+   jpa:
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+      show-sql: true
+      hibernate:
+         ddl-auto : update
+      properties :
+         hibernate:
+             format-sql : true
