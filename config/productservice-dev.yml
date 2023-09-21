@@ -1,4 +1,6 @@
 spring:
+   config:
+      import: vault://secret/productservice/dev,configserver:http://localhost:8888
    cloud:
       vault:
          kv:
