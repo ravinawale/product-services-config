@@ -1,19 +1,4 @@
 spring:
-   config:
-      import: vault://secret/productservice/dev,configserver:http://localhost:8888
-   cloud:
-      vault:
-         kv:
-           enabled: true
-         enabled : true 
-         authentication: TOKEN
-         uri: http://localhost:8200
-         host: localhost
-         port: 8200
-         scheme: http
-         token: 00000000-0000-0000-0000-000000000000
-      config:  
-         profile: dev
    datasource:
       username: ${mysqldbusername}
       password: ${mysqldbpassword}
