@@ -10,6 +10,8 @@ spring:
          port: 8200
          scheme: http
          token: 00000000-0000-0000-0000-000000000000
+      config:  
+         profile: dev
    datasource:
       username: ${mysqldbusername}
       password: ${mysqldbpassword}
