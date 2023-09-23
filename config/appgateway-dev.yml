@@ -14,7 +14,7 @@ spring:
               lower-case-service-id: true
         routes :
           - id : product-route
-            uri : lb://productservice
+            uri : http://localhost:8082
             predicates :
               - Path=/products/**
             filters:
