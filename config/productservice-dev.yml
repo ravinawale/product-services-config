@@ -1,7 +1,9 @@
 spring:
    datasource:
-      username: ${mysqldbusername}
-      password: ${mysqldbpassword}
+      #username: ${mysqldbusername}
+      #password: ${mysqldbpassword}
+      username: root
+      password: ravi@mysql70
       url: jdbc:mysql://localhost:3307/supershopee?useSSL=false&allowPublicKeyRetrieval=true
    jpa:
       database-platform: org.hibernate.dialect.MySQL8Dialect
