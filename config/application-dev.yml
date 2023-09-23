@@ -1,0 +1,69 @@
+server :
+ port : 9999
+
+spring:
+  application:
+     name: app-gateway	
+  main:
+     web-application-type: reactive
+  cloud :
+    gateway :
+       discovery:
+           locator:
+              enabled: true
+              lower-case-service-id: true
+        routes :
+          - id : product-route
+            uri : lb://productservice
+            predicates :
+              - Path=/products/**
+            filters:
+              - name : AuthenticationFilter
+              - name : Retry
+                args :
+                  retries : 3
+                  methods : GET
+                  backoff :
+                   firstBackOff : 50ms
+                   maxBackOff : 500ms
+              - name : CircuitBreaker
+                args :
+                  name : productservice
+                  fallbackUri : forward:/product-fallback
+          - id : auth-route
+            uri : lb://auth-service
+            predicates :
+               - Path=/auth/**
+            filters :
+              - name : Retry
+                args : 
+                  retries : 3
+                  method : GET
+                  backoff :
+                    firstBackOff : 50ms
+                    maxBackOff : 500ms
+              - name : CircuitBreaker
+                args :
+                  name : auth-service
+                  fallbackUri : forward://auth-fallback          
+           
+                  
+#ignore null fields in json
+  jackson :
+   default-property-inclusion: NON_NULL  
+                 
+#secret key - should be encrypted
+jwt:
+  secret: secretkey
+  token:
+    validity: 180000
+
+logging:
+  file: 
+    name: app-gateway.log
+  level:
+     root: info
+     com.supershopee.gateway: info
+  pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss} %5p [%t] %c [%M] - %m%n"
