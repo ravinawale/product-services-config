@@ -1,9 +1,4 @@
-server :
- port : 9999
-
 spring:
-  application:
-     name: app-gateway	
   main:
      web-application-type: reactive
   cloud :
@@ -13,45 +8,41 @@ spring:
               enabled: true
               lower-case-service-id: true
         routes :
-          - id : product-route
-            uri : http://localhost:8082
+          - id : drug-service-route
+            uri : http://localhost:8090
             predicates :
-              - Path=/products/**
+              - Path=/drugs/**
             filters:
-              - name : AuthenticationFilter
-              - name : Retry
-                args :
-                  retries : 3
-                  methods : GET
-                  backoff :
-                   firstBackOff : 50ms
-                   maxBackOff : 500ms
               - name : CircuitBreaker
                 args :
-                  name : productservice
-                  fallbackUri : forward:/product-fallback
-          - id : auth-route
-            uri : lb://auth-service
-            predicates :
-               - Path=/auth/**
-            filters :
-              - name : Retry
-                args : 
-                  retries : 3
-                  method : GET
-                  backoff :
-                    firstBackOff : 50ms
-                    maxBackOff : 500ms
-              - name : CircuitBreaker
-                args :
-                  name : auth-service
-                  fallbackUri : forward://auth-fallback          
-           
-                  
+                  name : drug-details
+                  fallbackUri : forward:/drugs-fallback
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 2s
+      failureRateThreshold: 5
+      eventConsumerBufferSize: 10
+      slowCallDurationThreshold: 200ms
+      slowCallRateThreshold: 30
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+      ignoreExceptions:
+        - java.lang.IllegalStateException
+   instances:
+    backendA:
+      baseConfig: drug-details                  
+                 
 #ignore null fields in json
   jackson :
    default-property-inclusion: NON_NULL  
-                 
+               
 #secret key - should be encrypted
 jwt:
   secret: secretkey
