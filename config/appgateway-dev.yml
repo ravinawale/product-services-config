@@ -1,3 +1,14 @@
+management:
+ health:
+   circuitbreakers:
+      enabled: true
+ endpoint:
+   health:
+      show-details: always
+ endpoints:
+   web:
+      exposure:
+         include: "*"
 spring:
   main:
      web-application-type: reactive
@@ -36,8 +47,8 @@ resilience4j.circuitbreaker:
       ignoreExceptions:
         - java.lang.IllegalStateException
    instances:
-    backendA:
-      baseConfig: drug-details                  
+      drug-details:
+          baseConfig: default                  
                  
 #ignore null fields in json
   jackson :
