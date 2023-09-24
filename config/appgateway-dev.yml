@@ -46,13 +46,9 @@ resilience4j.circuitbreaker:
         - java.io.IOException
       ignoreExceptions:
         - java.lang.IllegalStateException
-   instances:
+  instances:
       drug-details:
           baseConfig: default                  
-                 
-#ignore null fields in json
-  jackson :
-   default-property-inclusion: NON_NULL  
                
 #secret key - should be encrypted
 jwt:
