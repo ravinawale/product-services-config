@@ -22,7 +22,7 @@ spring:
           - id : drug-service-route
             uri : http://localhost:8090
             predicates :
-              - Path=/drugs/**
+              - Path=/drug-details/**
             filters:
               - name : CircuitBreaker
                 args :
