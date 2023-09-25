@@ -24,6 +24,9 @@ spring:
             predicates :
               - Path=/drug-details/**
             filters:
+              - name: Retry
+                args :
+                  name : drug-details
               - name : CircuitBreaker
                 args :
                   name : drug-details
