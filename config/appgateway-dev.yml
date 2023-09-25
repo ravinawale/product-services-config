@@ -42,7 +42,7 @@ resilience4j:
         retry-exceptions:
          - org.springframework.web.client.RestClientException
         ignore-exceptions:
-         - com.amrut.prabhu.IgnoreException
+         - com.supershopee.gateway.exception.IgnoreException
     retry-aspect-order: 2
     instances:
         drug-details:
