@@ -43,7 +43,7 @@ resilience4j:
          - org.springframework.web.client.RestClientException
         ignore-exceptions:
          - com.supershopee.gateway.exception.IgnoreException
-    retry-aspect-order: 2
+    retry-aspect-order: 1
     instances:
         drug-details:
            baseConfig: default 
@@ -64,7 +64,7 @@ resilience4j:
           #- java.io.IOException
         #ignoreExceptions:
           #- java.lang.IllegalStateException
-    circuit-breaker-aspect-order: 1
+    circuit-breaker-aspect-order: 2
     instances:
         drug-details:
             baseConfig: default               
