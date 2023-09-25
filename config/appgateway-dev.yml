@@ -27,6 +27,14 @@ spring:
               - name: Retry
                 args :
                   name : drug-details
+                  max-attempts: 3
+                  wait-duration: 5s
+                  enable-exponential-backoff: true
+                  exponential-backoff-multiplier: 2
+                  retry-exceptions:
+                    - java.util.concurrent.TimeoutException
+                  ignore-exceptions:
+                    - com.supershopee.gateway.exception.IgnoreException
               - name : CircuitBreaker
                 args :
                   name : drug-details
