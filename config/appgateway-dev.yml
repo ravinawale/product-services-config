@@ -80,6 +80,7 @@ logging:
     name: app-gateway.log
   level:
      root: info
+     org.springframework : debug
      com.supershopee.gateway: info
   pattern:
       console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
