@@ -33,6 +33,10 @@ spring:
                   fallbackUri : forward:/drugs-fallback
 resilience4j:
   retry:
+    metrics:
+       enabled: true
+       legacy:
+          enabled: true
     configs:
       default:
         max-attempts: 3
