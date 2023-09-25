@@ -28,27 +28,40 @@ spring:
                 args :
                   name : drug-details
                   fallbackUri : forward:/drugs-fallback
-
-resilience4j.circuitbreaker:
-  configs:
-    default:
-      slidingWindowSize: 10
-      minimumNumberOfCalls: 5
-      permittedNumberOfCallsInHalfOpenState: 3
-      automaticTransitionFromOpenToHalfOpenEnabled: true
-      waitDurationInOpenState: 2s
-      failureRateThreshold: 5
-      eventConsumerBufferSize: 10
-      slowCallDurationThreshold: 200ms
-      slowCallRateThreshold: 30
-      #recordExceptions:
-        #- org.springframework.web.client.HttpServerErrorException
-        #- java.io.IOException
-      #ignoreExceptions:
-        #- java.lang.IllegalStateException
-  instances:
-      drug-details:
-          baseConfig: default                  
+resilience4j:
+  retry:
+    retry-aspect-order: 2
+    instances:
+      myRetry:
+        max-attempts: 3
+        wait-duration: 5s
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        retry-exceptions:
+         - org.springframework.web.client.RestClientException
+        ignore-exceptions:
+         - com.amrut.prabhu.IgnoreException
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 2s
+        failureRateThreshold: 5
+        eventConsumerBufferSize: 10
+        slowCallDurationThreshold: 200ms
+        slowCallRateThreshold: 30
+        #recordExceptions:
+          #- org.springframework.web.client.HttpServerErrorException
+          #- java.io.IOException
+        #ignoreExceptions:
+          #- java.lang.IllegalStateException
+    circuit-breaker-aspect-order: 1
+    instances:
+        drug-details:
+            baseConfig: default               
                
 #secret key - should be encrypted
 jwt:
