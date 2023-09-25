@@ -40,10 +40,10 @@ resilience4j:
         enable-exponential-backoff: true
         exponential-backoff-multiplier: 2
         retry-exceptions:
-         - org.springframework.web.client.RestClientException
+         - java.util.concurrent.TimeoutException
         ignore-exceptions:
          - com.supershopee.gateway.exception.IgnoreException
-    retry-aspect-order: 1
+    retry-aspect-order: 2
     instances:
         drug-details:
            baseConfig: default 
@@ -64,7 +64,7 @@ resilience4j:
           #- java.io.IOException
         #ignoreExceptions:
           #- java.lang.IllegalStateException
-    circuit-breaker-aspect-order: 2
+    circuit-breaker-aspect-order: 1
     instances:
         drug-details:
             baseConfig: default               
