@@ -30,9 +30,8 @@ spring:
                   fallbackUri : forward:/drugs-fallback
 resilience4j:
   retry:
-    retry-aspect-order: 2
-    instances:
-      myRetry:
+    configs:
+      default:
         max-attempts: 3
         wait-duration: 5s
         enable-exponential-backoff: true
@@ -41,6 +40,10 @@ resilience4j:
          - org.springframework.web.client.RestClientException
         ignore-exceptions:
          - com.amrut.prabhu.IgnoreException
+    retry-aspect-order: 2
+    instances:
+        drug-details:
+           baseConfig: default 
   circuitbreaker:
     configs:
       default:
