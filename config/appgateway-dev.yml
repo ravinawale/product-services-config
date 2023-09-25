@@ -41,11 +41,11 @@ resilience4j.circuitbreaker:
       eventConsumerBufferSize: 10
       slowCallDurationThreshold: 200ms
       slowCallRateThreshold: 30
-      recordExceptions:
-        - org.springframework.web.client.HttpServerErrorException
-        - java.io.IOException
-      ignoreExceptions:
-        - java.lang.IllegalStateException
+      #recordExceptions:
+        #- org.springframework.web.client.HttpServerErrorException
+        #- java.io.IOException
+      #ignoreExceptions:
+        #- java.lang.IllegalStateException
   instances:
       drug-details:
           baseConfig: default                  
